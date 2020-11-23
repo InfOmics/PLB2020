@@ -8,6 +8,7 @@ This repository contains:
 
 ### News
 !!! Deadline to upload your solutions to R basics test: November 25th 10pm (CET) !!!
+
 !!! Deadline to upload your solutions to Bash exercises: December 3rd 10pm (CET) !!!
 
 ## Course contents
