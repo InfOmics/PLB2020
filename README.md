@@ -7,9 +7,8 @@ This repository contains:
 - exercises
 
 ### News
-!!! Deadline to upload your solutions to R basics test: November 25th 10pm (CET) !!!
-
 !!! Deadline to upload your solutions to Bash exercises: December 3rd 10pm (CET) !!!
+!!! On December 4th will take place the Q&A test on Bash programming !!!
 
 ## Course contents
 The following contents are available in ```lectures_materials_and_slides``` directory:
