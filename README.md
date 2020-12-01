@@ -8,6 +8,7 @@ This repository contains:
 
 ### News
 !!! Deadline to upload your solutions to Bash exercises: December 3rd 10pm (CET) !!!
+
 !!! On December 4th will take place the Q&A test on Bash programming !!!
 
 ## Course contents
