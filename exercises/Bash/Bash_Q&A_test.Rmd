@@ -33,18 +33,18 @@ e) cut -f2 | grep
 
 ## ES3
 
-Assume a tsv file with 5 columns and 100 rows. 
+Assume a tsv file with 5 columns and 100 rows.
 What is the result of the following command applied to the file:
 
 ```{bash}
 sort -rk4
 
 ```
-a) sort the rows in asceding order according to value in column 3
-b) sort the rows in descending order according to value in column 3 (X)
-c) sort only the values in column 3 in descending order
-d) print only the third column 
-e) sort all the files containined in the directory containing the number 3 in the name in descending order
+a) sort the rows in asceding order according to values in column 4
+b) sort the rows in descending order according to values in column 4 (X)
+c) sort the rows in descending order according to values in column 5
+d) print the fourth column sorted 
+e) sort in ascending order (according to their size) all the files in the current directory, which have '3' in their names
  
 
 ## ES4
