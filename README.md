@@ -7,17 +7,21 @@ This repository contains:
 - exercises
 
 ### News
-!!! Deadline to upload your solutions to Bash exercises: December 3rd 10pm (CET) !!!
+!!! Deadline to upload your solutions to Bash programming Q&A test: December 11th 9am (CET)!!!
 
-!!! On December 4th will take place the Q&A test on Bash programming !!!
+!!! On December 14th from 9am to 12pm (CET) will be held an extra lecture to help students to install softwares for NGS data processing (further details on e-learning page of the course) !!!
+
+!!! in ```support/NGSsw``` you will find instructions on which software you should install to follow the upcoming NGS classes !!!
 
 ## Course contents
 The following contents are available in ```lectures_materials_and_slides``` directory:
 1. Introduction to the course, introduction to Github and R markdown language
 2. Basics of R programming
 3. Unix Bash programming
+4. Introduction to Bioconductor
 
 ## Exercises
 The assignments are available in the ```exercises``` directory:
 1. Basics of R programming - two sets of exercises (in ```exercises/R_basics```)
 2. Unix Bash programming - jupyter notebook containing exercises on bash (in ```exercises/Bash```)
+3. Bioconductor - two sets of exercises (in ```exercises/Bioconductor```)
