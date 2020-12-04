@@ -43,15 +43,15 @@ sudo apt-get install -y build-essential
 sudo apt-get install -y git
 ``` 
 
+`CMake` is required to build some tools from source. CMake can be easily downloaded from [https://cmake.org/download/](https://cmake.org/download/). Choose 
+the CMake you like (better if >= 3.12) and that match your OS.
+
 MacOS users have first to install XCode from the App Store. Installing XCode you will install a bundle of 
 developing tools, including `clang`, `git` and `make`. You will have a `gcc`, but it is link to `clang`. It 
 is recommended to use GNU `gcc`, which can be installed via Homebrew or MacPort (see [https://discussions.apple.com/thread/8336714](https://discussions.apple.com/thread/8336714)).
 
-To downaload some tools and dependencies needed we will use Homebrew. You should make sure it is installed and
-availabel in your `PATH`. If not, please refer to [https://docs.brew.sh/Installation](https://docs.brew.sh/Installation).
-
-`CMake` is required to build some tools from source. CMake can be easily downloaded from [https://cmake.org/download/](https://cmake.org/download/). Choose 
-the CMake you like (better if >= 3.12) and that match your OS.
+To download some tools and dependencies needed we will use Homebrew. Make sure Homebrew is installed and
+available in your `PATH`. If not, please refer to [https://docs.brew.sh/Installation](https://docs.brew.sh/Installation).
 
 ## During installation
 
@@ -78,5 +78,5 @@ source ~/.bashrc  # or source ~/.bash_profile
 ### !!! IMPORTANT !!!
 **Be very very very very very very very very careful when you modify your `PATH`. Check 1000 times that the path to the tool you want to add is correct and that your are appending it to the `$PATH`.** 
 
-The risk is that you will overwrite the PATH and you will not be able to call even a simple `mkdir` from command-line.
+The risk is that you will overwrite the PATH and you will not be able even to call a simple `mkdir` from command-line.
 
