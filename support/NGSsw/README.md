@@ -18,7 +18,7 @@ The tools you will install are:
 - [Subread](http://subread.sourceforge.net/)
 - [IGV](http://software.broadinstitute.org/software/igv/)
 
-We prepared two shell scripts to install all these tools apart of IGV, which requires a simple downaload of 
+We prepared two shell scripts to install all these tools apart of IGV, which requires a simple download of the 
 Desktop app at [http://software.broadinstitute.org/software/igv/download](http://software.broadinstitute.org/software/igv/download).
 
 Linux users should run the script `install_tools_linux.sh`, while MacOS users should run `install_tools_mac.sh`.
