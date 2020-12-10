@@ -1,30 +1,11 @@
 ---
 title: "Bioconductor_Q&A_test"
 author: "Simone Avesani, Manuel Tognon"
-date: "12/9/2020"
+date: "12/10/2020"
 output: html_document
 ---
 
 # EX1
-
-Given the following IRange ir:
-```{r}
-##          start       end     width
-##      <integer> <integer> <integer>
-##   A1         1         3         3
-##   A2         3         5         3
-##   A3         5         7         3
-```
-how can you subset ir in order to take the second element?
-a) ir[[2]]
-b) ir[2]
-c) ir["A2"]
-d) ir[[2]] or ir["A2"]
-e) ir[2] or ir["A2"] X
-```{r}
-```
-
-# EX2
 
 What is a normal IRanges?
 
@@ -36,7 +17,7 @@ e) is an array with as much ranges from the original IRanges object as possible
 ```{r}
 ```
 
-# EX3 
+# EX2
 
 What is an Hits object obtained after finding the overlaps between two IRanges?
 
@@ -48,49 +29,7 @@ e) it is a matrix which describes the position in the genome overlapping an IRan
 ```{r}
 ```
 
-# EX4
-
-Which is the difference between IRanges and GRanges objects?
-
-a) There is no difference
-b) GRanges are a wrapper class of IRanges
-c) GRanges are like IRanges with the addition of 'strand' information
-d) GRanges are like IRanges with the addition of 'strand' and 'chromosome' information
-e) Only GRanges can be subset using negative indexing
-```{r}
-```
-
-# EX5
-
-Given an IRanges ir. What does it happen running 
-```{r}
-flank(ir, width = 3, start = F, both = T)
-```
-?
-
-a) It takes the flanking position of width 3 downstream and upstream with respect to the end of the ranges of 
-   ir
-b) It takes the flanking position of width 3 downstream and upstream with respect to the start of the ranges 
-   of ir
-c) It takes the flanking position of width 3 downstream with respect to the start of the ranges of ir
-d) It takes the flanking position of width 3 upstream with respect to the start of the ranges of ir
-e) Resize the ranges in ir to a width of 3
-```{r}
-```
-
-# EX6 
-
-Which is the R data-structure relying under the Rle class?
-
-a) vector
-b) matrix
-c) array
-d) factor
-e) BioStrings
-```{r}
-```
-
-# EX7
+# EX3
 
 Which kind of strings can be represented using a BioStrings object?
 
@@ -102,7 +41,7 @@ e) DNA, RNA and aminoacidics sequences
 ```{r}
 ```
 
-# EX8
+# EX4
 
 What is a consensus matrix?
 
@@ -114,7 +53,7 @@ e) a matrix containing the translated DNA codons
 ```{r}
 ```
 
-# EX9
+# EX5
 
 Which is the resulting object calling coverage() on a GRanges?
 
@@ -126,19 +65,7 @@ e) coverage() works on Biostrings and not on GRanges
 ```{r}
 ```
 
-# EX10
-
-What is an OrgDb object?
-
-a) is one member of a family of annotation objects
-b) is one member of a family of OrgDb objects
-c) is data.frame of annotation objects
-d) contains only data related to the homo sapiens specie
-e) an object to access the database of Bioconductor organization
-```{r}
-```
-
-# EX11
+# EX6
 
 Create two IRanges objects ir1 and ir2 with random start and end positions (in the range 1:100 and make 
 sure that start < end). Then, resize ir1 to a width of 10. Find the overlaps between ir1 and ir2. (Hint: use
@@ -146,7 +73,7 @@ sample())
 ```{r}
 ```
 
-# EX12
+# EX7
 
 Given the following lines of code, comment what it is happening step by step.
 ```{r}
@@ -174,7 +101,7 @@ ir2 <- disjoin(ir)
 plotRanges(ir2)
 ```
 
-# EX13
+# EX8
 
 Create a GRanges object gr with random start and end positions (in range 1:100), chromosome and strand 
 information.  Then, count how many ranges fall in the forward strand and how many ranges have a width less 
@@ -182,7 +109,16 @@ than 10. (Hint: use sample())
 ```{r}
 ```
 
-# EX14
+# EX9
+
+Given a DNA string s in IUPAC CODE MAP, transform it in the simple DNA alphabet (A, C, G, T). Then, compute 
+the reverse complement and translate it into the corresponding aminoacidic sequence. (Hint: use 
+IUPAC_CODE_MAP)
+```{r}
+s <- "NTRKWSD"
+```
+
+# EX10
 
 Given the GRanges gr1 and gr2, sort gr1 by seqlevel and select only certain ranges from gr1 which overlap 
 with gr2.
@@ -194,19 +130,49 @@ gr2 <- GRanges(seqnames = c("chr11", "chr5", "chr3"), IRanges(c(7, 16, 29), c(21
 
 ```
 
+# EX11
+
+Create a random DNAString of length 100 using IUPAC symbols. Compute the reverse complement of the string and
+translate it in the corresponding aminoacidic sequence. Count how many times the pattern "KR" appears in the 
+aminoacidic sequence. 
+```{r}
+```
+
+# EX12
+
+Given an IRanges ir, get the flanking ranges of width 10, both on the right and on the left. Create a GRanges
+gr from ir and shift it on the right by 7 positions. Then, resize it to a width of 15 with the range end fixed.
+```{r}
+ir <- IRanges(start = c(1, 8, 4, 10), width = c(34, 41, 98, 62), 
+              names = c(paste("seq", 1:4, sep="")))
+```
+
+# EX13
+
+Given two IRanges objects ir1 and ir2 find the overlaps between them. Comment the result. Then, create 
+another IRanges object named ir3 containing the overlapping range between the first query and the first 
+subject.
+```{r}
+ir1 <- IRanges(start = c(1, 8, 4, 10), width = c(34, 41, 98, 62), 
+              names = c(paste("seq", 1:4, sep="")))
+ir2 <- IRanges(start = c(30, -48, 99, 50), width = c(76, 7, 116, 67), 
+              names = c(paste("seq", 1:4, sep="")))
+```
+
+# EX14
+
+Create four random DNAStrings using IUPAC symbols. Store them in a DNAStringSet object. Then, get the letter frequency. How many codons can be obtained from the strings in the DNAStringSet?
+```{r}
+```
+
 # EX15
 
-Given a DNA string s in IUPAC CODE MAP, transform it in the simple DNA alphabet (A, C, G, T). Then, compute 
-the reverse complement and translate it into the corresponding aminoacidic sequence. (Hint: use 
-IUPAC_CODE_MAP)
+Given a GRanges gr, keep only ranges falling in standard chromosomes. Map the seqlevels to NCBI style names.
+Keep only data related to chromosome 11. Then add a random score (in range -10:10) to gr as metadat
+
 ```{r}
-s <- "NTRKWSD"
+gr <- GRanges(seqnames = c("chr11", "c5hrU34", "chr5", "chr11"), IRanges(c(4, 2, 10, 25), c(18, 17, 15, 32)),
+              strand=c("-", "-", "+", "+"))
 ```
 
-# EX16
-
-Retrieve all annotation data for "Homo sapiens". Which is the data provider? Which is the rdataclass of the 
-resulting object? Which is the taxonomy ID? Which are the source type?
-```{r}
-```
 
