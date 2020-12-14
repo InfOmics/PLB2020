@@ -9,7 +9,7 @@ This repository contains:
 ### News
 !!! Deadline to upload your solutions to Bioconductor Q&A - 1: December 17th 2020 9am (CET) !!!
 
-!!! Deadline to upload your solutions to Bioconductor exercises (IRanges, GRanges, BioStrings, Annotation): December 17th 2020 9am (CET) !!!
+!!! Deadline to upload your solutions to Bioconductor exercises (IRanges, GenomicRanges, BioStrings, Annotation): December 17th 2020 9am (CET) !!!
 
 !!! On December 18th 2020 will be held the Q&A on Bioconductor - Annotation !!!
 
