@@ -93,7 +93,7 @@ make STAR
 cd $my_home
 
 # install HTSeq
-pip3 install htslib
+pip3 install HTSeq
 
 # install subread
 sudo apt-get install subread
