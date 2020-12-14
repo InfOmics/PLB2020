@@ -50,7 +50,7 @@ MacOS users have first to install XCode from the App Store. Installing XCode you
 developing tools, including `clang`, `git` and `make`. You will have a `gcc`, but it is link to `clang`. It 
 is recommended to use GNU `gcc`, which can be installed via Homebrew or MacPort (see [https://discussions.apple.com/thread/8336714](https://discussions.apple.com/thread/8336714)).
 
-To download some tools and dependencies needed we will use Homebrew. Make sure Homebrew is installed and
+To download some tools and dependencies needed on **MacOS** we will use Homebrew. Make sure Homebrew is installed and
 available in your `PATH`. If not, please refer to [https://docs.brew.sh/Installation](https://docs.brew.sh/Installation).
 
 ## During installation
