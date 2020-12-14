@@ -7,11 +7,11 @@ This repository contains:
 - exercises
 
 ### News
-!!! Deadline to upload your solutions to Bash programming Q&A test: December 11th 9am (CET)!!!
+!!! Deadline to upload your solutions to Bioconductor Q&A - 1: December 17th 2020 9am (CET) !!!
 
-!!! On December 14th from 9am to 12pm (CET) will be held an extra lecture to help students to install softwares for NGS data processing (further details on e-learning page of the course) !!!
+!!! Deadline to upload your solutions to Bioconductor exercises (IRanges, GRanges, BioStrings, Annotation): December 17th 2020 9am (CET) !!!
 
-!!! in ```support/NGSsw``` you will find instructions on which software you should install to follow the upcoming NGS classes !!!
+!!! On December 18th 2020 will be held the Q&A on Bioconductor - Annotation !!!
 
 ## Course contents
 The following contents are available in ```lectures_materials_and_slides``` directory:
