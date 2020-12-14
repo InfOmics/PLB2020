@@ -68,7 +68,7 @@ cp STAR /usr/local/bin
 cd $my_home
 
 # install HTSeq
-pip3 install htslib
+pip3 install HTSeq
 
 # install subread
 wget https://sourceforge.net/projects/subread/files/subread-2.0.0/subread-2.0.0-source.tar.gz/download
