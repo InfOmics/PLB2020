@@ -87,7 +87,6 @@ orgs$species
 es <- query(orgs, "Drosophila grimshawi")[[1]]
 keytypes(es)
 "Cp19" %in% keys(es, keytype="ALIAS")
-
 ```
 
 
@@ -101,8 +100,50 @@ g <- genes(txdb)
 seqinfo(g)
 positive <- g[ strand(g) == "+"]
 positive <- keepSeqlevels(positive, "chr2", pruning.mode="coarse")
-
 newStyle <- mapSeqlevels(seqlevels(positive), "NCBI")
 gr <- renameSeqlevels(positive, newStyle)
 ```
+
+# EX9
+
+Given the file `input_genes.csv`, retrieve the ENTREZ IDs of the genes. Retrieve the starting and ending
+positions of the given genes. (Hint: some genes are repeated)
+```{r}
+```
+
+# EX10
+
+Consider the APOE gene. Retrieve its ENTREZ code and its sequence. How much long is APOE?
+```{r}
+```
+
+# EX11
+
+Consider the `chr22.vcf.gz` VCF file. Translate the file content into a GenomicRanges object. How many variants are contained in the VCF file? Which is the average e-rate?
+```{r}
+fname <- system.file("extdata", "chr22.vcf.gz", package="VariantAnnotation")
+```
+
+# EX12
+
+Consider 'BRCA1' gene. Use the org.Hs.eg.db package to map from the gene symbol 'BRCA1' to its Entrez identifier.
+
+1. Use the TxDb.Hsapiens.UCSC.hg19.knownGene package to retrieve the transcript names (TXNAME) corresponding to the BRCA1
+Entrez identifier.
+
+2. Use the `cdsBy() function to retrieve the genomic coordinates of all coding sequences grouped by transcript, and
+select the transcripts corresponding to the identifiers we're interested in. As a sanity check, ensure that the sum of
+the widths of the exons in each coding sequence is evenly divisible by 3 (Hint: use R 'modulus')
+
+3. Use the Bsgenome.Hsapiens.UCSC.hg19 package to extract the DNA sequence of each transcript.
+
+4. Pick four transcripts of your choice and translate them in their corresponding aminoacidic sequence.
+```{r}
+```
+
+
+
+
+
+
 
