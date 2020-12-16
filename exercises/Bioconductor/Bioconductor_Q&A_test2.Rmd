@@ -67,4 +67,42 @@ e) give a simple interface to deploy computational biology algorithms on data re
 ```
 
 
+# EX6 
+
+Using Annotationhub(), collects the unique GRanges record from UCSC dataprovider, keep only sequences with chr1 as seqlevel an print its seqlength 
+
+```{r}
+grs <- ah[which(ah$rdataclass == "GRanges" && ah$dataprovider == "UCSC"),]
+gr1 <- keepSeqlevels(grs[[2]], "chr1", pruning.mode="coarse")
+seqlengths(gr1)
+```
+
+
+# EX7
+
+From Annotationhub retrive the number of species contained in OrgDB, extract the record from "Drosophila grimshawi" specie and check if "Cp19" is contained inside the ALIAS keytype
+```{r}
+orgs <- subset(ah, ah$rdataclass == "OrgDb")
+orgs$species
+es <- query(orgs, "Drosophila grimshawi")[[1]]
+keytypes(es)
+"Cp19" %in% keys(es, keytype="ALIAS")
+
+```
+
+
+# EX8
+
+Extract the genes represented by a single genomic range (exons located only on one strand of the reference sequence) from "TxDb.Hsapiens.UCSC.hg19.knownGene", extract only the sequences with positive strand and belonging to the "chr2".
+Rename the seqlevel of the genomicRange obained mapping the seqlevel to "NCBI"
+```{r}
+txdb <- TxDb.Hsapiens.UCSC.hg19.knownGene
+g <- genes(txdb)
+seqinfo(g)
+positive <- g[ strand(g) == "+"]
+positive <- keepSeqlevels(positive, "chr2", pruning.mode="coarse")
+
+newStyle <- mapSeqlevels(seqlevels(positive), "NCBI")
+gr <- renameSeqlevels(positive, newStyle)
+```
 
