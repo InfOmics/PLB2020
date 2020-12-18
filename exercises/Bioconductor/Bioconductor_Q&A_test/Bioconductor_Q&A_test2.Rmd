@@ -1,0 +1,134 @@
+---
+title: "Bioconductor_Q&A_test2"
+author: "Simone Avesani, Manuel Tognon"
+date: "12/14/2020"
+output: html_document
+---
+
+# EX1
+
+Which is the content of an AnnotationHub object?
+
+a) full genomic sequence
+b) efficient interface for annotation from different sources
+c) set of links to annotation sources
+d) transcriptomic and genomic information regarding the queried organism
+e) names of the genes for the queried organism
+```{r}
+```
+
+# EX2
+
+Consider an OrgDb object. What is a keytype?
+
+a) datatype which can be used as key
+b) key value to query the object
+c) type of a key
+d) ENSEMBL, NCBI, etc. genes naming style
+e) keytype are available for TxDb objects and are not available for OrgDb objects
+```{r}
+```
+
+# EX3 
+
+Assume a TxDb object called `txdb`. Which is the class of the resulting object when calling `transcripts(txdb)`?
+
+a) DataFrame
+b) IRanges
+c) DNAStringSet
+d) TxDb
+e) GenomicRanges
+```{r}
+```
+
+# EX4
+
+How many chromosomal sequences are available for Homo Sapiens (hg19 genome assembly)? Use the appropriate Bioconductor
+package.
+
+a) 23
+b) 24
+c) 93
+d) 26
+e) 52
+```{r}
+```
+
+# EX5
+
+Which is Organism.dplyr package main aim?
+
+a) deploy information regarding the queried organism(s)
+b) retrieve genomic, transcriptomic and proteomic data for the queried organism(s)
+c) give an efficient and simple SQL-like interface to query and map annotation data
+d) give an efficient and simple annotation database to query 
+e) give a simple interface to deploy computational biology algorithms on data related to the queried organism
+```{r}
+```
+
+
+# EX6 
+
+Using Annotationhub(), collects the unique GRanges record from UCSC dataprovider, keep only sequences with chr1 as seqlevel and print its seqlength.
+
+```{r}
+
+```
+
+
+# EX7
+
+From Annotationhub retrive the number of species contained in OrgDB, extract the record from "Drosophila grimshawi" specie and check if "Cp19" is contained inside the ALIAS keytype of this specie.
+```{r}
+
+```
+
+
+# EX8
+
+Extract the genes represented by a single genomic range (exons located only on one strand of the reference sequence) from "TxDb.Hsapiens.UCSC.hg19.knownGene", extract only the sequences with positive strand and belonging to the "chr2".
+Rename the seqlevel of the genomicRange obained mapping the seqlevel to "NCBI"
+```{r}
+
+```
+
+# EX9
+
+Given the file `input_genes.csv`, retrieve the ENTREZ IDs of the genes. Retrieve the starting and ending
+positions of the given genes in Homo sapiens specie. (Hint: some genes are repeated)
+
+```{r}
+
+```
+
+# EX10
+
+Consider the APOE gene. Retrieve its ENTREZ code and its sequence. How much long is APOE?
+```{r}
+
+```
+
+# EX11
+
+Consider the `chr22.vcf.gz` VCF file. Translate the file content into a GenomicRanges object. How many variants are contained in the VCF file? Which is the average e-rate?
+```{r}
+
+```
+
+# EX12
+
+Consider 'BRCA1' gene. Use the org.Hs.eg.db package to map from the gene symbol 'BRCA1' to its Entrez identifier.
+
+1. Use the TxDb.Hsapiens.UCSC.hg19.knownGene package to retrieve the transcript names (TXNAME) corresponding to the BRCA1
+Entrez identifier.
+
+2. Use the 'cdsBy()' function to retrieve the genomic coordinates of all coding sequences grouped by transcript, and
+select the transcripts corresponding to the identifiers we're interested in. As a sanity check, ensure that the sum of
+the widths of the exons in each coding sequence is evenly divisible by 3 (Hint: use R 'modulus')
+
+3. Use the Bsgenome.Hsapiens.UCSC.hg19 package to extract the DNA sequence of each transcript.
+
+4. Pick four transcripts of your choice and translate them in their corresponding aminoacidic sequence.
+```{r}
+
+```
