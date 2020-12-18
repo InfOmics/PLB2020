@@ -69,7 +69,7 @@ e) give a simple interface to deploy computational biology algorithms on data re
 
 # EX6 
 
-Using Annotationhub(), collects the unique GRanges record from UCSC dataprovider, keep only sequences with chr1 as seqlevel and print its seqlength.
+Using Annotationhub(), collects the unique GRanges record from UCSC dataprovider, keep only sequences with chr1 as seqlevel and print the seqlength of the GRange.
 
 ```{r}
 
