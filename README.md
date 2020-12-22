@@ -11,6 +11,8 @@ This repository contains:
 
 !!! During Christmas holidays will be uploaded Bioconductor Q&A - 3 !!!
 
+!!! Deadline to upload your solutions to Bioconductor Q&A - 3: January 7th 2021 9am (CET) !!!
+
 ## Course contents
 The following contents are available in ```lectures_materials_and_slides``` directory:
 1. Introduction to the course, introduction to Github and R markdown language
