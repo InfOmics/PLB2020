@@ -1,0 +1,56 @@
+---
+title: "Multiassay_Q&A_test"
+output: html_document
+---
+
+
+## ES1
+
+What is a Summarized Experiment
+
+a) is an R class to store matrices of sperimental results (RNAseq, proteomics) with addiotional metadata (x)
+b) is an R class to represent a matrix storing multiple data frames
+c) is a Python3.9 class to store matrices of sperimental results (RNAseq, proteomics) with addiotional metadata
+d) is an R class where the rows represents the genomic ranges of interests
+e) is an R class representing an matrices array of sperimental results
+
+
+## ES2
+
+Which is the difference between a Summarized Experiment and a Ranged Summarized Experiment
+
+a) SE is an object which can contain a limited number of experimental data while RSE can only contain the user defined range of experimental results
+b) There is not difference
+c) SE is a child class of RSE
+d) RSE contains the Genomic ranges in the rows along with the experimental data while the SE object does not contain Genomic ranges objects
+e) SE object can contain metadata while RSE cannot contain metadata
+
+## ES3 
+
+What is a Multiassay object:
+
+a) is an R data structure for representing and analyzing transcriptomics and proteomics experiments
+b) is an R data structure for representing and analyzing multi-omics experiments
+c) is an R data structure for representing metadata of a SE
+d) is an R object reprenting an array of SE
+e) it is a parent class of SE 
+
+## ES4
+
+What is difference between ColData and RowData in a Multiassay
+
+a) ColData stores specimen metadata while RowData contains information related to experimental data 
+b) ColData contains information related to experimental data  while RowData sotores specimen metadata
+c) RowData contains the matrices with experimental data while ColData stores the sample identifiers
+d) There is not difference
+e) ColData is a vector while RowData is a data frame
+
+## ES5
+
+What is a TCGA barcode:
+
+a) identifies cancer gene on NCBI 
+b) is a primary identifier of biospecimen data within the TCGA project and it is composed by a single and unique identifier
+c) is a primary identifier of biospecimen data within the TCGA project and it is composed by a collection of identifiers (x)
+d) identifies the cell line used to obtain TCGA data available on TCGA
+e) identifies the protein produced translating the transcript produced by the corresponding gene
