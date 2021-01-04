@@ -54,3 +54,59 @@ b) is a primary identifier of biospecimen data within the TCGA project and it is
 c) is a primary identifier of biospecimen data within the TCGA project and it is composed by a collection of identifiers (x)
 d) identifies the cell line used to obtain TCGA data available on TCGA
 e) identifies the protein produced translating the transcript produced by the corresponding gene
+
+
+## ES6
+
+Import the MultiAssayExperiment miniACC, keep only patients that have complete data for all assay.
+Print a table to show how many patiens have complete data for all assay.
+Select only the RNASeq2GeneNorm assay and create a completed SummarizedExperiments (adding also the correct colData) using as colnames the TCGAbarcode of the partecipants.
+
+
+
+
+```{r}
+library(MultiAssayExperiment)
+library(TCGAutils)
+
+sampleMap(miniACC)
+
+data(miniACC)
+summary(complete.cases(miniACC))
+acc <- miniACC[, complete.cases(miniACC), ]
+
+rna= experiments(acc)[[1]] 
+
+  
+colnames(rna)=TCGAbarcode(colnames(rna), participant = TRUE)
+rna = rna[,!duplicated(colnames(rna))]
+
+
+rownames(coldata)
+colnames(assay(rna))
+se = SummarizedExperiment(assay = list(count=assay(rna)), 
+                          colData = colData)
+
+```
+## ES7
+
+Consider "airway" dataset, how many patients are treated and how many are untreated?
+Which are the uniques names of the cell lines used in the study? (Hint: import airway dataset using library())
+Which is the publication from which "airway" data have been obtained?
+## ES8
+
+Consider "miniACC" dataset, how many RNA counts are available for genes "MAPK14" and "IGFBP2"?
+Retrive the name of the protein produced by "IGFBP2" (Hint: the information is available in miniACC multiassay)
+
+
+## ES9
+
+Consider the file "pathaways_scoring.tsv", it contains a matrix with the enrichment score of 300 biological pathways into the "airway" dataset samples.
+Renames the sample names using the identifiers used in "airway" dataset, create a summarized experiment and add to it all the  information about of the samples available in the right location.
+Compute the average enrichment score by sample and than by pathway. Which are the pathways and samples with highest enrichment score? Put this information in metadata.
+
+Consider the file "airway_new.tsv" , map the ENSEMBL gene names to the corresponding gene symbols and put the information in the right location of the SummarizedExperiment. 
+Retrieve the gene(s) in the treated samples with the highest and lowest average RNA counts and do the same for genes of untreated samples. Put this information in metadata.
+
+Consider the two preovius SummarizedExperiments obtained and create a MultiAssay containing them.
+
