@@ -9,9 +9,7 @@ This repository contains:
 ### News
 !!! Deadline to upload your solutions to Bioconductor Q&A - 2: January 7th 2021 9am (CET) !!!
 
-!!! During Christmas holidays will be uploaded Bioconductor Q&A - 3 !!!
-
-!!! Deadline to upload your solutions to Bioconductor Q&A - 3: January 7th 2021 9am (CET) !!!
+!!! On January 8th will be held the Bioconductor Q&A - 3 !!!
 
 ## Course contents
 The following contents are available in ```lectures_materials_and_slides``` directory:
@@ -24,4 +22,4 @@ The following contents are available in ```lectures_materials_and_slides``` dire
 The assignments are available in the ```exercises``` directory:
 1. Basics of R programming - two sets of exercises (in ```exercises/R_basics```)
 2. Unix Bash programming - jupyter notebook containing exercises on bash (in ```exercises/Bash```)
-3. Bioconductor - two sets of exercises (in ```exercises/Bioconductor```)
+3. Bioconductor - three sets of exercises (in ```exercises/Bioconductor```)
