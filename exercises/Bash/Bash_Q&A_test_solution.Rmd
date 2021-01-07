@@ -1,0 +1,157 @@
+---
+title: "Bash_Q&A_test.Rmd"
+output: html_notebook
+author: "Manuel Tognon, Simone Avesani"
+---
+  
+## EX1
+  
+Assume that you are given a TSV file with 10 rows and 6 columns. The following command
+```{bash}
+cat "myFile.tsv"| head -n 5 | cut -f 6 | tail -n 4 
+```
+a) returns an error
+b) prints the last 4 rows of the file
+c) prints the first 4 rows of the file
+d) prints the last 4 values of the sixth column
+e) prints the second the third, the fourth and the fifth values of the sixth column
+```{r}
+# answer e
+```
+
+## EX2
+Assume that you are given a GFF file and assume that you want to extract the rows with data related to 
+chromosome 1, for example.
+Which bash command would you use?
+  
+a) grep
+b) tar -xzf
+c) cat
+d) find
+e) cut -f2 | grep 
+```{r}
+# answer a
+```
+
+## EX3
+
+Assume you are given a TSV file with 5 columns and 100 rows. Note that the first column contains the row 
+indexes.
+What the following command does, when applied to our file? 
+```{bash}
+sort -rk4
+```
+a) sort the rows in asceding order according to value in column 3
+b) sort the rows in descending order according to value in column 3 
+c) sort only the values in column 3 in descending order
+d) print only the third column 
+e) sort all the files containined in the directory containing the number 3 in the name in descending order
+```{r}
+# answer  b
+```
+
+## EX4
+
+When writing values to a file, in Bash, which is the difference between `>` and `>>`?
+  
+a) there is not difference
+b) > append the stdoutput at the end of the file, >> write on the std error
+c) > append the stdoutput at the end of the file, >> redirect the std output to the file deleting the current 
+   file content
+d) > redirect the std output on the file deleting the current content, >> redirect the file content to the 
+   standard input
+e) > redirect the std output to the file deleting the current file content, >> append the stdoutput at the end
+   of the file
+```{r}
+# answer is e
+```
+
+## EX5
+
+Consider the TSV file `my_dataset.tsv`. 
+Create a new file called `my_dataset_new.tsv` containing only the Sepal.Length, Sepal.Width and Species 
+columns realted to "setosa" specie. Sort values in descending order by Sepal.Length. (Bonus: include the 
+column names in the resulting TSV file).
+
+```{bash}
+cat "my_dataset.tsv" | head -n1 | cut -f 1,2,5 > "my_dataset_new.tsv" 
+cat "my_dataset.tsv" | grep "setosa" | cut -f 2,3,6  | sort -rk1 >> "my_dataset_new.tsv"
+
+```
+
+## EX6
+
+Create a new directory called `my_dir` and rename it as `my_dir2`. Create inside `my_dir2` a TXT file called 
+`my_file.txt`. Write in `my_file.txt` a numeric sequence from 1 to 10.
+```{bash}
+mkdir my_dir
+mv my_dir my_dir2
+touch my_dir2/my_file.txt  
+outfile="my_dir2/my_file.txt"
+
+for i in $(seq 1 10); do
+  echo $i >> $outfile
+done
+```
+
+## EX7
+
+Consider the GFF file `grafimo_out.gff`. Create a file named `grafimo_out_fwd.gff` containing only data 
+related to forward DNA strand ('+') and a file named `grafimo_out_rev.gff`, containing only data related to
+the reverse strand ('-'). Include the GFF header in the output files. (Hint: the strand information are in 
+the 7th column and type `man awk` on terminal).
+```{bash}
+infile="grafimo_out.gff"
+fwdfile="grafimo_out_fwd.gff"
+revfile="grafimo_out_rev.gff"
+
+cat $infile | head -n1 > $fwdfile
+awk '$7 == "+"' $infile >> $fwdfile
+
+cat $infile | head -n1 > $revfile
+awk '$7 == "-"' $infile >> $revfile
+```
+
+## EX8 
+Create a functions that, read a GFF file, prints the total number of features contained in the file, a 
+function that prints the number of features belonging to the forward strand ('+') and one which prints those
+belonging to reverse strand ('-'), a funtion that prints the number of features by chromosome and a funtion 
+which computes the average score by chromosome. Consider `grafimo_out.gff` as input file. (Hint: the score is
+in the 6th column, while the strand is in the 7th column).
+
+```{bash}
+
+function process_gff {
+
+  feature_num=`wc -l $1`
+  feature_num=$(($feature_num - 1))
+  echo "The total number of feature in ${1} is ${feature_num}"
+  
+  fwd_features=`awk '$7 == "+"' $1 | wc -l`
+  echo "The number of features belonging to the forward strand are ${fwd_features}"
+  
+  rev_features=`awk '$7 == "-"' $gff | wc -l`
+  echo "The number of features belonging to the reverse strand are ${rev_strand}"
+  
+  chroms=`awk '{print $1}' | sort -u`
+  
+  # number of features by chromosome
+  for c in $chroms; do
+    features_curr=`awk '$1 == "$c"' $1 | wc -l`
+    echo "Chromosome ${c} has ${feature_curr} features"
+  done
+  
+  # average score by chromsome
+  for c in $chroms; do
+    features_curr=`awk '$1 == "$c"' $1 | wc -l`
+    avg_score=$((`awk '$1 == "$c"' $1 | awk '{sum+=$6}END{print sum}'` / $features_curr))
+    echo "Chromosome ${c} has ${avg_score} average score"
+  done
+  
+} 
+
+infile="grafimo_out.gff"
+process_gff < $infile
+
+```
+
