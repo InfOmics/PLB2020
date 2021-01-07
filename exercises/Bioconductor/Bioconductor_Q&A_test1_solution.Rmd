@@ -1,0 +1,360 @@
+---
+title: "Bioconductor_Q&A_test"
+author: "Simone Avesani, Manuel Tognon"
+date: "12/10/2020"
+output: html_document
+---
+
+# EX1
+
+What is a normal IRanges?
+
+a) is an IRanges with values normalized between 0 and 1
+b) is a minimal representation of the IRanges viewed as a set 
+c) is a minimal representation of the IRanges viewed as an array
+d) is a set with as much ranges from the original IRanges object as possible
+e) is an array with as much ranges from the original IRanges object as possible
+```{r}
+# answer is b)
+```
+
+# EX2
+
+What is an Hits object obtained after finding the overlaps between two IRanges?
+
+a) it is a DataFrame which describes the relationship between two IRanges
+b) it is a vector containing the overlapping positions
+c) it is an array containing the overlapping positions
+d) it is a matrix which describes the relationship between two IRanges
+e) it is a matrix which describes the position in the genome overlapping an IRanges
+```{r}
+# answer is d)
+```
+
+# EX3
+
+Which kind of strings can be represented using a BioStrings object?
+
+a) only DNA
+b) RNA and DNA
+c) DNA and aminocidic sequences
+d) RNA and aminoacidics sequences
+e) DNA, RNA and aminoacidics sequences
+```{r}
+# answer is e)
+```
+
+# EX4
+
+What is a consensus matrix?
+
+a) a DataFrame containing the translated DNA codons
+b) an array containing the letter probabilty at each position
+c) a matrix containing  the letter probability at each position
+d) a DataFrame containing the letter probability at each position
+e) a matrix containing the translated DNA codons
+```{r}
+# answer is c)
+```
+
+# EX5
+
+Which is the resulting object calling coverage() on a GRanges?
+
+a) a named Rle List object with one coverage vector per seqlevel of the GRanges
+b) the sequencing depth per ranges in the GRanges
+c) a coverage vector between all the sequences
+d) a named List object with one coverage vector per seqlvel of the Granges
+e) coverage() works on Biostrings and not on GRanges
+```{r}
+# answer is a)
+```
+
+# EX6
+
+Create two IRanges objects ir1 and ir2 with random start and end positions (in the range 1:100 and make 
+sure that start < end). Then, resize ir1 to a width of 10. Find the overlaps between ir1 and ir2. (Hint: use
+sample())
+```{r}
+ir1.starts <- sample(1:100, 3, replace = T)
+ir1.ends <- sample(1:100, 3, replace = T)
+
+ir1 <- IRanges::IRanges(start = ir1.starts, end = ir1.ends, 
+                       names = paste("seq", 1:3, sep = ""))
+ir1
+
+ir2.starts <- sample(1:100, 3, replace = T)
+ir2.ends <- sample(1:100, 3, replace = T)
+
+ir2 <- IRanges::IRanges(start = ir2.starts, end = ir2.ends, 
+                        names = paste("seq", 1:3, sep = ""))
+ir2
+
+ir1 <- IRanges::resize(ir1, width = 10)
+ir1
+
+IRanges::findOverlaps(ir1, ir2)
+
+
+```
+
+# EX7
+
+Given the following lines of code, comment what it is happening step by step.
+```{r}
+library(IRanges)
+
+plotRanges <- function(x, xlim=x, main=deparse(substitute(x)),
+                       col="black",sep=0.5,...){
+  height <-1
+  if(is(xlim, "Ranges"))
+    xlim<-c(min(start(xlim)),max(end(xlim)))
+   bins<- disjointBins(IRanges(start(x), end(x)+1))
+  plot.new()
+  plot.window(xlim, c(0, max(bins)*(height+sep)))
+  ybottom <- bins*(sep+height) -height
+  rect(start(x)-0.5, ybottom, end(x)+0.5, ybottom+height, col=col,...)
+  title(main)
+  axis(1)
+}
+par(mfrow = c(2,1))
+
+
+ir <- IRanges(start= c(1,3,7,9), end=c(4,4,8,10))
+plotRanges(ir)
+ir1 <- reduce(ir)
+plotRanges(ir1) 
+ir2 <- disjoin(ir)
+plotRanges(ir2)
+```
+
+# EX8
+
+Create a GRanges object gr with random start and end positions (in range 1:100), chromosome and strand 
+information.  Then, count how many ranges fall in the forward strand and how many ranges have a width less 
+than 10. (Hint: use sample())
+```{r}
+
+starts <- sample(1:50, 10, replace = T)
+ends <- sample(51:100, 10, replace = T)
+
+gr <- GenomicRanges::GRanges(seqnames = paste("chr", sample(c(1:22, "X", "Y"), 10), sep = ""), 
+                             ranges = IRanges::IRanges(start = starts, end = ends), 
+                             strand = sample(c("+", "-"), 10, replace = T) 
+                             )
+gr
+
+# number of features falling in fwd strand
+strand.info <- as.vector(BiocGenerics::strand(gr))
+length(strand.info[strand.info == "+"])
+
+# number of ranges with width less than 10
+gr.widths <- BiocGenerics::width(gr)
+sum(gr.widths < 10)
+
+```
+
+# EX9
+
+Given a DNA string s in IUPAC CODE MAP, transform it in the simple DNA alphabet (A, C, G, T). Then, compute 
+the reverse complement and translate it into the corresponding aminoacidic sequence. (Hint: use 
+IUPAC_CODE_MAP)
+```{r}
+iupac2plainDNA <- function(s)
+{
+  if(class(s) != "character")
+  {
+    stop("ERROR: the inpput argument must be a DNA string")
+  }
+  
+  dna.s <- paste(
+    Biostrings::IUPAC_CODE_MAP[unlist(strsplit(s, split = ""))], 
+    collapse = ""
+                 )
+  
+  return(dna.s)
+    
+}
+
+
+s <- "NTRKWSD"
+
+dna.s <- iupac2plainDNA(s)
+dna.s <- Biostrings::DNAString(dna.s)
+dna.s
+
+# reverse complement
+dna.s.rc <- Biostrings::reverseComplement(dna.s)
+dna.s.rc 
+
+# translate in the corresponding aminoacidic sequence
+aa.s <- Biostrings::translate(dna.s)
+aa.s
+```
+
+# EX10
+
+Given the GRanges gr1 and gr2, sort gr1 by seqlevel and select only certain ranges from gr1 which overlap 
+with gr2.
+```{r}
+library(GenomicRanges)
+
+gr1 <- GRanges(seqnames = c("chr11", "chr5", "chr3"), IRanges(c(4, 10, 25), c(18, 15, 32)), 
+                           strand=c("-", "+", "+"))
+gr2 <- GRanges(seqnames = c("chr11", "chr5", "chr3"), IRanges(c(7, 16, 29), c(21, 31, 31)), 
+                           strand=c("-", "+", "+"))
+
+
+# sort gr1
+GenomeInfoDb::seqlevels(gr1) <- paste("chr", c(3,5,11), sep = "")
+gr1 <- sort(gr1)
+gr1
+
+# select only ramges of gr1 which overlaps with those of gr2
+gr1.ov.subset <- IRanges::subsetByOverlaps(gr1, gr2)
+gr1.ov.subset
+
+```
+
+# EX11
+
+Create a random DNAString of length 100 using IUPAC symbols. Compute the reverse complement of the string and
+translate it in the corresponding aminoacidic sequence. Count how many times the pattern "KR" appears in the 
+aminoacidic sequence. 
+```{r}
+s <- paste(sample(Biostrings::IUPAC_CODE_MAP, 100, replace = T), collapse = "")
+dna.s <- Biostrings::DNAString(s)
+dna.s
+
+dna.s.rc <- Biostrings::reverseComplement(dna.s)
+dna.s.rc
+
+aa.s <- Biostrings::translate(dna.s.rc)
+aa.s
+
+Biostrings::countPattern("KR", aa.s)
+
+```
+
+# EX12
+
+Given an IRanges ir, get the flanking ranges of width 10, both on the right and on the left. Create a GRanges
+gr from ir and shift it on the right by 7 positions. Then, resize it to a width of 15 with the range end fixed.
+```{r}
+library(IRanges)
+
+ir <- IRanges(start = c(1, 8, 4, 10), width = c(34, 41, 98, 62), 
+              names = c(paste("seq", 1:4, sep="")))
+
+ir
+
+# get flanking ranges of width 10
+ir.flanks <- IRanges::flank(ir, 10, both = T)
+ir.flanks
+
+# create GRanges
+gr <- GenomicRanges::GRanges(
+  seqnames = paste("seq", 1:length(ir), sep = ""),
+  ranges = ir, strand = sample(c("+", "-"), length(ir), replace = T)
+                             )
+gr
+
+# shift gr by 7 bp on the right
+gr <- GenomicRanges::shift(gr, shift = 7)
+gr
+
+# resize gr to a width of 15 with range ends fixed
+gr <- GenomicRanges::resize(gr, width = 15, fix = "end")
+gr
+```
+
+# EX13
+
+Given two IRanges objects ir1 and ir2 find the overlaps between them. Comment the result. Then, create 
+another IRanges object named ir3 containing the overlapping range between the first query and the first 
+subject.
+```{r}
+library(IRanges)
+
+ir1 <- IRanges(start = c(1, 8, 4, 10), width = c(34, 41, 98, 62), 
+              names = c(paste("seq", 1:4, sep="")))
+ir2 <- IRanges(start = c(30, -48, 99, 50), width = c(76, 7, 116, 67), 
+              names = c(paste("seq", 1:4, sep="")))
+
+ov <- findOverlaps(ir1, ir2)
+ov
+
+# create a IRanges object containing the overlapping range between the first query and the first subject
+intersect(
+  ir2[subjectHits(ov)[1]],
+  ir1[queryHits(ov)[1]]
+  )
+```
+
+# EX14
+
+Create four random DNAStrings using IUPAC symbols. Store them in a DNAStringSet object. Then, get the letter frequency. How many codons can be obtained from the strings in the DNAStringSet?
+```{r}
+getRandomDNAseq <- function(s.size)
+{
+  
+  if(s.size <= 0)
+  {
+    stop("ERROR: the string size must be > 0")
+  }
+  
+  s <- paste(sample(Biostrings::DNA_ALPHABET[1:4], size = s.size, replace = T), collapse = "")
+  
+  return(s)
+}
+
+# get 4 DNA strings of length 100
+dna.list <- lapply(X = c(100,350,142,462), FUN = getRandomDNAseq)
+dna.list
+
+dna.ss <- Biostrings::DNAStringSet(unlist(dna.list))
+dna.ss
+
+# get letter frequency
+Biostrings::alphabetFrequency(dna.ss, as.prob = T)
+
+# number of codons
+sum(floor(width(dna.ss)/3))
+  
+```
+
+# EX15
+
+Given a GRanges gr, keep only ranges falling in standard chromosomes. Map the seqlevels to NCBI style names.
+Keep only data related to chromosome 11. Then add a random score (in range -10:10) to gr as metadat
+
+```{r}
+library(GenomicRanges)
+
+gr <- GRanges(seqnames = c("chr11", "c5hrU34", "chr5", "chr11"), IRanges(c(4, 2, 10, 25), c(18, 17, 15, 32)),
+              strand=c("-", "-", "+", "+"))
+
+gr <- GenomeInfoDb::keepStandardChromosomes(gr, pruning.mode = "coarse")
+gr
+
+newstyle <- GenomeInfoDb::mapSeqlevels(
+  GenomeInfoDb::seqlevels(gr),
+  "NCBI"
+)
+gr.newstyle <- GenomeInfoDb::renameSeqlevels(gr, newstyle)
+gr.newstyle
+
+GenomeInfoDb::seqlevels(gr.newstyle, pruning.mode = "coarse") <- "11"
+gr.newstyle
+
+scores <- S4Vectors::DataFrame(
+  score = runif(
+    length(gr.newstyle), min = -10, max = 10
+    )
+  )
+S4Vectors::values(gr.newstyle) <- scores
+gr.newstyle
+
+```
+
+

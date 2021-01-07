@@ -1,0 +1,217 @@
+---
+title: "Bioconductor_Q&A_test3"
+author: "Simone Avesani, Manuel Tognon"
+date: "1/7/2021"
+output: html_document
+---
+
+
+# EX1
+
+What is Summarized Experiment?
+
+a) it is an R class to store matrices of experimental results (RNAseq, proteomics) with addiotional metadata (x)
+b) it is an R class to represent a matrix storing multiple DataFrames
+c) it is a Python3 class to store matrices of sperimental results (RNAseq, proteomics) with addiotional metadata
+d) it is an R class to store DataFrames of experimental results (RNAseq, proteomics), with additional metadata, where 
+the rows represents the genomic ranges of interests
+e) it is an R class representing an array of matrices of experimental results
+```{r}
+```
+
+
+# EX2
+
+Which is the difference between Summarized Experiment and Ranged Summarized Experiment?
+
+a) SummarizedExperiment can contain an unlimited number of experimental data, while RangedSummarizedExperiment can only
+contain a user-defined range of experimental data
+b) There is no difference between the two
+c) SummarizedExperiment is a child class of RangedSummarizedExperiment
+d) RangedSummarizedExperiment contains the Genomic Ranges in the rows along with the experimental data, while the 
+SummarizedExperiment object does not contain Genomic Ranges (x)
+e) SummarizedExperiment can contain metadata, while RangedSummarizedExperiment cannot contain metadata
+```{r}
+```
+
+
+# EX3 
+
+What is a Multiassay object?
+
+a) it is an R data structure to represent and analyze transcriptomics and proteomics experiments
+b) it is an R data structure to represent and analyze multi-omics experiments (x)
+c) it is an R data structure to represent the metadata of a SummarizedExperiment object
+d) it is an R object reprenting an array of SummarizedExperiment objects
+e) it is the parent class of SummarizedExperiment class
+```{r}
+```
+
+
+# EX4
+
+Which is the difference between ColData and RowData in Multiassay?
+
+a) ColData is a vector, while RowData is a DataFrame
+b) ColData contains information related to experimental dat, while RowData sotores specimen metadata
+c) RowData contains the matrices with experimental data, while ColData stores the sample identifiers
+d) There is no difference
+e) ColData stores specimen metadata, while RowData contains information related to experimental data (x)
+```{r}
+```
+
+
+# EX5
+
+What is a TCGA barcode?
+
+a) it identifies cancer gene on NCBI data portal (available also through TCGA R library)
+b) it is a primary identifier of biospecimen data within the TCGA project and it is composed by a single and unique 
+identifier
+c) it identifies the cell lines used to obtain experimental data available on TCGA data portal (available also through 
+TCGA R library)
+d) it is a primary identifier of biospecimen data within the TCGA project and it is composed by a collection of 
+identifiers (x)
+e) it is the identifier of the protein produced by the corresponding gene, when it is in a tumoral state
+```{r}
+```
+
+
+# EX6
+
+Import the MultiAssayExperiment ```miniACC```. Print a table to show how many patiens have complete data for all assays. 
+Keep only the patients having complete data for all assays. From ```miniACC``` select only the "RNASeq2GeneNorm" assay 
+and create a complete SummarizedExperiments (adding also the appropriate colData). Use as colnames the TCGAbarcode of 
+the partecipants.
+```{r}
+suppressPackageStartupMessages(library(MultiAssayExperiment))
+suppressPackageStartupMessages(library(TCGAutils))
+
+# import miniACC
+sampleMap(miniACC)
+data(miniACC)
+
+# get patients with complete and incomplete data
+summary(complete.cases(miniACC))
+
+# get RNASeq2GeneNorm data
+miniACC.complete.only <- miniACC[, complete.cases(miniACC), ]
+rnaseq <- experiments(miniACC.complete.only)[["RNASeq2GeneNorm"]] 
+  
+# create new SE with RNASeq2GeneNorm data (only pats with complete data)
+colnames(rnaseq) <- TCGAbarcode(colnames(rnaseq), participant = TRUE)
+rnaseq <- rnaseq[,!duplicated(colnames(rnaseq))]
+colData <- colData(rnaseq)
+rownames(colData)
+colnames(assay(rnaseq))
+
+if(any(!(rownames(colData) == colnames(assay(rnaseq)))))
+{
+  stop("ERROR: there is no correspondence between assay's colnames and colData rownames")
+}
+
+se <- SummarizedExperiment(assay = list(count = assay(rnaseq)), colData = colData)
+se
+head(assay((se)))
+```
+
+
+# EX7
+
+Consider ```airway``` dataset. How many samples are "treated" and how many are "untreated"? Which are the unique names 
+of  the cell lines used in the study? Which is the publication where ```airway``` data were presented? (Hint: import airway dataset using library())
+```{r}
+suppressPackageStartupMessages(library(SummarizedExperiment))
+suppressPackageStartupMessages(library(MultiAssayExperiment))
+suppressPackageStartupMessages(library(airway))
+
+# import airway data
+data("airway")
+
+# get number of samples trt and untrt
+table(colData(airway)$dex)
+
+# get unique cell line names
+as.vector(unique(colData(airway)$cell))
+
+# BONUS: get how many samples per cell line
+table(colData(airway)$cell)
+
+# get airway pub
+expinfo(metadata(airway)[[1]])["title"]
+```
+
+
+# EX8
+
+Consider ```miniACC``` dataset. How many RNA-seq counts are available, on average, for genes "MAPK14" and "IGFBP2"?
+Retrieve the name of the protein produced by "IGFBP2" (Hint: all you need is available in miniACC multiassay).
+```{r}
+suppressPackageStartupMessages(library(MultiAssayExperiment))
+suppressPackageStartupMessages(library(SummarizedExperiment))
+
+# impprt dataset
+data("miniACC")
+
+# get counts for MAPK14 and IGFBP2
+rnaseq <- experiments(miniACC)[["RNASeq2GeneNorm"]]
+sapply(DataFrame(t(assay(rnaseq[c("MAPK14", "IGFBP2"),]))), mean)
+
+# get IGFBP2 protein name
+rppa <- experiments(miniACC)[[3]]
+rowData(rppa)["IGFBP2", "Protein"]
+```
+
+
+# EX9
+
+Consider the dataset ```airway_new.RDS``` and ```coldata.rds```. Load them in your R workspace. 
+Consider also the TSV file ```data/pathaways_scoring.tsv```. The file contains a matrix with the enrichment score of 300 
+hypothetical biological pathways into the "airway_new" dataset samples. Load it into an appropriate R data structure. 
+Rename the sample names using the sample IDs in "airway_new" dataset. Then, create a SummarizedExperiment with all the 
+information related to the considered samples (in ```coldata.rds```). Put these information in the appropriate location 
+of the SummarizedExperiment. Compute the average enrichment score by sample and than by pathway. Which are the pathways 
+and samples with the highest average enrichment score? Put this information in metadata.
+Map the ENSEMBL gene names to the corresponding gene symbols and put the information in the right location of the 
+SummarizedExperiment. 
+```{r}
+suppressPackageStartupMessages(library(SummarizedExperiment))
+suppressPackageStartupMessages(library(MultiAssayExperiment))
+suppressPackageStartupMessages(library(airway))
+suppressPackageStartupMessages(library(biomaRt))
+
+# load airway_new.rds and coldata.rds
+airway.new <- readRDS("data/airway_new.rds")
+coldata <- readRDS("data/coldata.rds")
+
+# load pathways_scoring.tsv
+pathway.scoring <- read.table("data/pathway_scoring.tsv", sep = "\t")
+head(pathway.scoring)
+
+# renaming sample names in pathways.scoring 
+colnames(pathway.scoring) <- colnames(airway.new)
+head(pathway.scoring)
+
+# create a SE for pathway scoring data
+coldata <- DataFrame(coldata)
+se.pathway <- SummarizedExperiment(assay = list(as.matrix(pathway.scoring)), colData = coldata)
+se.pathway
+
+# compute sample and pathway with highest avg enrichment score
+enrich.score.sample <-colMeans(pathway.scoring)
+enrich.score.sample.max <- names(enrich.score.sample[enrich.score.sample == max(enrich.score.sample)])
+metadata(se.pathway)[[1]] <- paste("Sample with highest avg enrichment score", 
+                                    enrich.score.sample.max, sep = " ")
+
+enrich.score.pathway <- rowMeans(pathway.scoring)
+enrich.score.pathway.max <- names(enrich.score.pathway[enrich.score.pathway == max(enrich.score.pathway)])
+metadata(se.pathway)[[2]] <- paste("Pathway with highest avg enrichment score",
+                                   enrich.score.pathway.max, sep = " ")
+
+# map gene ENSEMBL IDs to corresponding gene symbol
+mart <- useMart(biomart = "ensembl", dataset = "hsapiens_gene_ensembl")
+gene.symbol <- getBM(attributes = c("ensembl_gene_id","hgnc_symbol"),
+                      filters = "ensembl_gene_id", values = rownames(airway.new),
+                      mart = mart)$hgnc_symbol
+rownames(airway.new) <- gene.symbol
+```
