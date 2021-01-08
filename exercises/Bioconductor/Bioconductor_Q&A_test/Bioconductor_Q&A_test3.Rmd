@@ -10,7 +10,7 @@ output: html_document
 
 What is Summarized Experiment?
 
-a) it is an R class to store matrices of experimental results (RNAseq, proteomics) with addiotional metadata (x)
+a) it is an R class to store matrices of experimental results (RNAseq, proteomics) with addiotional metadata 
 b) it is an R class to represent a matrix storing multiple DataFrames
 c) it is a Python3 class to store matrices of sperimental results (RNAseq, proteomics) with addiotional metadata
 d) it is an R class to store DataFrames of experimental results (RNAseq, proteomics), with additional metadata, where 
@@ -29,7 +29,7 @@ contain a user-defined range of experimental data
 b) There is no difference between the two
 c) SummarizedExperiment is a child class of RangedSummarizedExperiment
 d) RangedSummarizedExperiment contains the Genomic Ranges in the rows along with the experimental data, while the 
-SummarizedExperiment object does not contain Genomic Ranges (x)
+SummarizedExperiment object does not contain Genomic Ranges 
 e) SummarizedExperiment can contain metadata, while RangedSummarizedExperiment cannot contain metadata
 ```{r}
 ```
@@ -40,7 +40,7 @@ e) SummarizedExperiment can contain metadata, while RangedSummarizedExperiment c
 What is a Multiassay object?
 
 a) it is an R data structure to represent and analyze transcriptomics and proteomics experiments
-b) it is an R data structure to represent and analyze multi-omics experiments (x)
+b) it is an R data structure to represent and analyze multi-omics experiments 
 c) it is an R data structure to represent the metadata of a SummarizedExperiment object
 d) it is an R object reprenting an array of SummarizedExperiment objects
 e) it is the parent class of SummarizedExperiment class
@@ -56,7 +56,7 @@ a) ColData is a vector, while RowData is a DataFrame
 b) ColData contains information related to experimental dat, while RowData sotores specimen metadata
 c) RowData contains the matrices with experimental data, while ColData stores the sample identifiers
 d) There is no difference
-e) ColData stores specimen metadata, while RowData contains information related to experimental data (x)
+e) ColData stores specimen metadata, while RowData contains information related to experimental data
 ```{r}
 ```
 
@@ -71,7 +71,7 @@ identifier
 c) it identifies the cell lines used to obtain experimental data available on TCGA data portal (available also through 
 TCGA R library)
 d) it is a primary identifier of biospecimen data within the TCGA project and it is composed by a collection of 
-identifiers (x)
+identifiers 
 e) it is the identifier of the protein produced by the corresponding gene, when it is in a tumoral state
 ```{r}
 ```
