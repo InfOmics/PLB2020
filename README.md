@@ -7,9 +7,8 @@ This repository contains:
 - exercises
 
 ### News
-!!! Deadline to upload your solutions to Bioconductor Q&A - 2: January 7th 2021 9am (CET) !!!
+!!! Deadline to upload your solutions to Bioconductor Q&A - 3: January 15th 2021 9am (CET) !!!
 
-!!! On January 8th will be held the Bioconductor Q&A - 3 !!!
 
 ## Course contents
 The following contents are available in ```lectures_materials_and_slides``` directory:
