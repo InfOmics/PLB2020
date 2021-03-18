@@ -7,7 +7,9 @@ This repository contains:
 - exercises
 
 ### News
-!!! Lecture will restart in March (at start of 2nd semester) !!!
+!!! Lectures will start on Friday March 26th !!!
+
+!!! There will be an additional lecture on Thursday April 1st 9-12am (CET) !!!
 
 
 ## Course contents
