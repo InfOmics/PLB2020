@@ -7,9 +7,7 @@ This repository contains:
 - exercises
 
 ### News
-!!! Lectures will start on Friday March 26th !!!
-
-!!! There will be an additional lecture on Thursday April 1st 9-12am (CET) !!!
+!!! On moodle platform has been released the full lecture calendar of March-April !!!
 
 
 ## Course contents
@@ -18,6 +16,8 @@ The following contents are available in ```lectures_materials_and_slides``` dire
 2. Basics of R programming
 3. Unix Bash programming
 4. Introduction to Bioconductor
+5. Introduction to NGS data analysis
+6. RNA-seq data analysis
 
 ## Exercises
 The assignments are available in the ```exercises``` directory:
