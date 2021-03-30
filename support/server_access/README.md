@@ -1,4 +1,4 @@
-# Accessing Server for NGS hands-on lab(ProgrammingLaboratory for Bioinformatics 2020-21)
+# Accessing Server for NGS hands-on lab (ProgrammingLaboratory for Bioinformatics 2020-21)
 
 Brief tutorial on how to access and Infomics lab server and transfer files from local computers to the server.
 
