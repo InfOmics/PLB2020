@@ -1,6 +1,6 @@
 # Accessing Server for NGS hands-on lab(ProgrammingLaboratory for Bioinformatics 2020-21)
 
-Brief tutorial on how to accessand Infomics lab server and transfer files from local computers to the server.
+Brief tutorial on how to access and Infomics lab server and transfer files from local computers to the server.
 
 ### Prerequisites:
 
@@ -30,7 +30,7 @@ Then type the password.
 
 **NB** IP address and password will be given during the hands-on lab.
 
-## 2.How canI upload filesand directoriesfrom my computerto the server?
+## 2.How can I upload files and directorie sfrom my computer to the server?
 
 Open a new bash/shell (do not connect to the server!!).
 
@@ -59,6 +59,7 @@ You will be required to enter the password.
 To download directories from the server to your local computer, type:
 
 ```scp -r wonderful_server@123.45.67.89:/path/to/directory/unbelievable_directory.txt ./```
+
 You will be required to enter the password.
 
 ## 4.How can I see the currently running processes, memory usage, etc.?
