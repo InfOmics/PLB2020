@@ -17,10 +17,12 @@ The following contents are available in ```lectures_materials_and_slides``` dire
 3. Unix Bash programming
 4. Introduction to Bioconductor
 5. Introduction to NGS data analysis
-6. RNA-seq data analysis
+6. RNA-seq and Differential Expression analysis
 
 ## Exercises
 The assignments are available in the ```exercises``` directory:
 1. Basics of R programming - two sets of exercises (in ```exercises/R_basics```)
 2. Unix Bash programming - jupyter notebook containing exercises on bash (in ```exercises/Bash```)
 3. Bioconductor - three sets of exercises (in ```exercises/Bioconductor```)
+4. NGS data analysis
+5. RNA-seq and Differential Expression analysis - R scripts with DESeq2 exercises (in ```exercises/RNAseq-DE``` ) 
