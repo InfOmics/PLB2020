@@ -22,7 +22,7 @@ Connect to the UniVR network via VPN.
 
 Open your Unix bash/shell and type ```ssh``` followed by the server’s IP address:
 
-```ssh wonderful_server@123.45.67.89```
+```ssh -p 1234 wonderful_server@123.45.67.89```
 
 Then type the password.
 
@@ -36,13 +36,13 @@ Open a new bash/shell (do not connect to the server!!).
 
 To upload filesfrom your local computer to the server,type:
 
-```scp my_fancy_file.txt wonderful_server@123.45.67.89:/path/to/some/location/in/server/```
+```scp -P 1234 my_fancy_file.txt wonderful_server@123.45.67.89:/path/to/server/location```
 
 You will be required to enter the password. 
 
 To upload directories from your local computer to the server, type:
 
-```scp -r my_fancy_directory wonderful_server@123.45.67.89:/path/to/some/location/in/server```
+```scp -r -P 1234 my_fancy_directory wonderful_server@123.45.67.89:/path/to/server/location```
 
 You will be required to enter the password.
 
@@ -52,13 +52,13 @@ Open a new bash/shell (do not connect to the server!!).
 
 To download files from the server to your local computer, type:
 
-```scp wonderful_server@123.45.67.89:/path/to/file/awesome_file.txt ./```
+```scp -P 1234 wonderful_server@123.45.67.89:/path/to/awesome_file.txt ./```
 
 You will be required to enter the password.
 
 To download directories from the server to your local computer, type:
 
-```scp -r wonderful_server@123.45.67.89:/path/to/directory/unbelievable_directory.txt ./```
+```scp -r -P 1234 wonderful_server@123.45.67.89:/path/to/my_cool_directory.txt ./```
 
 You will be required to enter the password.
 
