@@ -18,6 +18,7 @@ The following contents are available in ```lectures_materials_and_slides``` dire
 4. Introduction to Bioconductor
 5. Introduction to NGS data analysis
 6. RNA-seq and Differential Expression analysis
+7. Introduction to genetic variant analysis
 
 ## Exercises
 The assignments are available in the ```exercises``` directory:
@@ -26,3 +27,4 @@ The assignments are available in the ```exercises``` directory:
 3. Bioconductor - three sets of exercises (in ```exercises/Bioconductor```)
 4. NGS data analysis
 5. RNA-seq and Differential Expression analysis - R scripts with DESeq2 exercises (in ```exercises/RNAseq-DE``` ) 
+6. Introduction to genetic variant analysis - single set of exercises (in ```exrcises/Variant_analysis```)
