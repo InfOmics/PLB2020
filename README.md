@@ -8,7 +8,7 @@ This repository contains:
 
 ### News
 
-!!! On Thursday May 20 thre will be a lecture 9-12am (CET) !!!
+!!! On Thursday May 20 thre will be a lecture 9-12 (CET) !!!
 
 !!! Lecture of May 21st is cancelled !!!
 
