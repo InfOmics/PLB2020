@@ -7,7 +7,10 @@ This repository contains:
 - exercises
 
 ### News
-!!! On moodle platform has been released the full lecture calendar of March-April !!!
+
+!!! On Thursday May 20 thre will be a lecture 9-12am (CET) !!!
+
+!!! Lecture of May 21st is cancelled !!!
 
 
 ## Course contents
@@ -19,6 +22,8 @@ The following contents are available in ```lectures_materials_and_slides``` dire
 5. Introduction to NGS data analysis
 6. RNA-seq and Differential Expression analysis
 7. Introduction to genetic variant analysis
+8. 
+9. Enrichment analysis
 
 ## Exercises
 The assignments are available in the ```exercises``` directory:
@@ -28,3 +33,4 @@ The assignments are available in the ```exercises``` directory:
 4. NGS data analysis
 5. RNA-seq and Differential Expression analysis - R scripts with DESeq2 exercises (in ```exercises/RNAseq-DE``` ) 
 6. Introduction to genetic variant analysis - single set of exercises (in ```exrcises/Variant_analysis```)
+8. Enrichment analysis - two sets of exercises (in ```exercises/Enrichment```) 
