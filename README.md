@@ -8,9 +8,7 @@ This repository contains:
 
 ### News
 
-!!! On Thursday May 20 thre will be a lecture 9-12 (CET) !!!
-
-!!! Lecture of May 21st is cancelled !!!
+!!! Lecture of May 25 will be held from 9am-12pm (CET) !!!
 
 
 ## Course contents
@@ -24,6 +22,7 @@ The following contents are available in ```lectures_materials_and_slides``` dire
 7. Introduction to genetic variant analysis
 8. Single Cell analysis
 9. Enrichment analysis
+10. Network analysis
 
 ## Exercises
 The assignments are available in the ```exercises``` directory:
@@ -35,3 +34,4 @@ The assignments are available in the ```exercises``` directory:
 6. Introduction to genetic variant analysis - single set of exercises (in ```exrcises/Variant_analysis```)
 7. Single cell analysis
 8. Enrichment analysis - two sets of exercises (in ```exercises/Enrichment```) 
+9. Network analysis - one set of exercises (in ```exercises/Network_analysis```)
